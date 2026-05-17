@@ -1,6 +1,6 @@
 # ZMK USB RGB Idle Bypass (`zmk-usb-rgb-idle-bypass`)
 
-A lightweight, standalone ZMK module that prevents your keyboard's RGB underglow from turning off when connected via USB, while maintaining power-saving idle timeouts when running on battery (Bluetooth).
+A lightweight, standalone ZMK module that prevents your keyboard's RGB underglow from turning off when connected via USB, while maintaining power-saving idle timeouts when running on battery (Bluetooth). **Fully compatible with both standard ZMK underglow features, as well as the `zmk-rgb-plus` custom lighting module.**
 
 ## 🤖 AI Disclosure
 
@@ -53,4 +53,8 @@ CONFIG_ZMK_BT_IDLE_ONLY=y
 ## 🛠️ How it works
 This module intercepts the `zmk_activity_state_changed` and `zmk_usb_conn_state_changed` events natively. 
 
-If it detects the keyboard has gone idle, it checks the USB power status (`zmk_usb_is_powered()`). If USB is active, it preserves the RGB state. If the keyboard is running on Bluetooth, it safely saves your RGB settings and turns off the LEDs, restoring them automatically as soon as you wake the board up.
+If it detects the keyboard has gone idle, it checks the USB power status (`zmk_usb_is_powered()`). If USB is active, it preserves the active lighting. If the keyboard is running on Bluetooth, it safely saves your lighting settings and turns off the LEDs, restoring them automatically as soon as you wake the board up.
+
+Depending on your configuration, the module automatically compiles with and communicates with either:
+- **Classic ZMK Underglow** (`CONFIG_ZMK_RGB_UNDERGLOW`): Calls native `zmk_rgb_underglow_on()` / `zmk_rgb_underglow_off()`.
+- **ZMK RGB Plus Advanced Lighting** (`CONFIG_ZMK_RGB_PLUS`): Calls custom `zmk_rgb_plus_on()` / `zmk_rgb_plus_off()` with full work loop suspension for optimal battery efficiency.
