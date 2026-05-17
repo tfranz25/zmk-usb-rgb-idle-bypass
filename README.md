@@ -2,6 +2,10 @@
 
 A lightweight, standalone ZMK module that prevents your keyboard's RGB underglow from turning off when connected via USB, while maintaining power-saving idle timeouts when running on battery (Bluetooth).
 
+## 🤖 AI Disclosure
+
+This ZMK module was built with the assistance of AI tools. The code has been reviewed, tweaked, and tested on [TibbyPad](https://github.com/tfranz25/tibbypad-module), but as with all AI-assisted firmware, please review the configurations before flashing it to your device.
+
 ## 💡 Why use this?
 In native ZMK, enabling `CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE=y` turns off the underglow on inactivity regardless of how the keyboard is powered. 
 
@@ -25,7 +29,7 @@ manifest:
       revision: main
 ```
 
-### 2. Configure `tibbypad.conf` (or your board's `.conf` file)
+### 2. Configure your board's `.conf` file
 Remove the native ZMK idle config and enable the module's custom flag:
 
 ```kconfig
